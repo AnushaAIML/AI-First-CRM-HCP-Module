@@ -34,27 +34,35 @@ An AI-powered CRM Assistant that enables pharmaceutical representatives to recor
 # 🏗 Architecture
 
 ```text
-                    User
-                     │
-                     ▼
-          React + Redux Frontend
-                     │
-                 Axios API
-                     │
-                     ▼
-             FastAPI Backend
-                     │
-                     ▼
-          LangGraph AI Agent
-                     │
-      ┌──────────────┼──────────────┐
-      ▼              ▼              ▼
- Log Interaction  Edit Record  Compliance Check
-      │              │              │
-      └──────────────┼──────────────┘
-                     │
-                     ▼
-             PostgreSQL Database
+            👤 User
+                |
+                ↓
+      React Frontend (Chat + Form)
+                |
+                ↓
+        FastAPI Backend API
+                |
+                ↓
+        🧠 LangGraph AI Agent
+                |
+                ↓
+      LLM: Groq Llama 3.3 70B
+                |
+    ┌───────────┼───────────┐
+    ↓           ↓           ↓
+
+log_interaction edit_interaction fetch_hcp_profile
+
+    ↓           ↓           ↓
+
+validate_compliance suggest_next_best_action
+
+                |
+                ↓
+      🗄️ PostgreSQL Database
+                |
+                ↓
+    Auto-filled CRM Form + AI Response
 ```
 
 ---
